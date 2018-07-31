@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Place a rotating 3-D SVG geometric solid into your web page</title>
+  <script type="text/javascript" src="highlight.pack.js"></script>
+  <script type="text/javascript" src="highlightCode.js"></script>
+  <link href='highlight.css' rel='stylesheet' />
+   <script src="svg3d.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/coffee-script/1.7.1/coffee-script.min.js"></script>
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style='padding:10px;font-family:arial'>
+<center>
+<h4>Place a rotating 3-D SVG geometric solid into your web page</h4>
+<div style='width:90%;background-color:gainsboro;text-align:justify;padding:10px;border-radius:6px;'>
+You can choose from over 120 geometric solids.
+After you have selected and sized the solid, you can publish it in your web page. The solid will continually rotate.
+Also, the user of your web page can rotate/spin the solid with the cursor. You may place more than a single solid in a web page.
+<p>
+
+</p>
+
+
+</div>
+<table ><tr>
+<td valign=top align=center>
+    <b>Publish This Solid</b>
+<div style="padding:10px;border:1px solid black;border-radius:10px;background:lightblue">
+  Select Geometric Solid:<select id=geometricSolidSelect onChange=geometricSolidSelected() >
+
+</select>
+
+<div style=font-weight:bold id=solidNameDiv>Icosahedron</div>
+<iframe id=geometricSolidFrame src="icosahedronFrame.htm" frameborder="0" width=400 height=400 scrolling="no"></iframe>
+
+</div>
+</td>
+<td align=center>
+       <b>Compare This Solid</b>
+
+<div style="padding:10px;border:1px solid black;border-radius:10px;background:gainsboro">
+  Compare Geometric Solid:<select id=geometricSolidCompareSelect onChange=geometricSolidCompareSelected() >
+
+</select>
+<div style=font-weight:bold id=solidNameCompareDiv>Icosahedron</div>
+<iframe id=geometricSolidCompareFrame src="icosahedronFrame.htm" frameborder="0" width=400 height=400 scrolling="no"></iframe>
+
+</div>
+
+
+</td>
+</tr>
+
+
+
+</table>
+(Use mouse down + cursor to rotate/spin geometric solid)<p></p>
+Size:<input type="text" id=solidSizeValue value=400 style=width:60px; /> <button onClick=changeSize()>Change Size</button>
+
+   <p></p>Geometric Solid 3D SVG Publish:<br>
+ <div style=';background:lightblue;padding;10px;border:1px solid black;border-radius:10px'>
+
+   Place the following into the &lt;head> of your web page:<br>
+<textarea style='text-align:center;color:white;background:midnightblue;width:400px;height:15px;border-width:0px;'><script src="http:svg-3d.com/svg3d.min.js"></script></textarea>
+
+ <br>  Place the following into the &lt;body> of your web page:
+  <div id=svgSourceDiv style=overflow:auto;width:97%;text-align:center; /></div>
+</div>
+
+ <p></p>Geometric Solid 3D SVG Source:
+  <textarea id=svgSolidValue style=overflow:auto;width:100%;height:100px;text-align:left; /></textarea>
+<div id=emDiv></div>
+</center>
+ <script id=myScript>
+ //---typical coffee script call---
+ /*
+
+  width  = 400
+  height = 400
+  # =================dodecahedron====================
+
+
+  # Create dodecahedron shape with randomly colored surfaces
+  shape = seen.Shapes.dodecahedron().scale(height * 0.4)
+
+  seen.Colors.randomSurfaces2(shape)
+  console.log(shape)
+  # Create scene and add shape to model
+  scene = new seen.Scene
+    model    : seen.Models.default().add(shape)
+    viewport : seen.Viewports.center(width, height)
+
+  # Create render context from canvas
+  context = seen.Context('dodecahedronSVG', scene).render()
+  # Slowly rotate octahedron
+  context.animate()
+    .onBefore((t, dt) -> shape.rotx(dt*1e-4).roty(0.7*dt*1e-4))
+    .start()
+   # Enable drag-to-rotate on the canvas
+  dragger = new seen.Drag('dodecahedronSVG', {inertia : true})
+  dragger.on('drag.rotate', (e) ->
+    xform = seen.Quaternion.xyToTransform(e.offsetRelative...)
+    shape.transform(xform)
+    context.render()
+  )
+ */
+</script>
+<!--
+<script type="text/coffeescript" id=myScript >
+
+  width  = 400
+  height = 400
+  # =================dodecahedron====================
+
+
+  # Create dodecahedron shape with randomly colored surfaces
+  shape = seen.Shapes.dodecahedron().scale(height * 0.4)
+
+  seen.Colors.randomSurfaces2(shape)
+  console.log(shape)
+  # Create scene and add shape to model
+  scene = new seen.Scene
+    model    : seen.Models.default().add(shape)
+    viewport : seen.Viewports.center(width, height)
+
+  # Create render context from canvas
+  context = seen.Context('polyhedraSVG', scene).render()
+  # Slowly rotate octahedron
+  context.animate()
+    .onBefore((t, dt) -> shape.rotx(dt*1e-4).roty(0.7*dt*1e-4))
+    .start()
+</script>
+-->
+
+
+<script>
+
+var objName=[]
+objName[0]=["Tetrahedron","Tetrahedron"]
+objName[1]=["Cube","Cube"]
+objName[2]=["Octahedron","Octahedron"]
+objName[3]=["Dodecahedron","Dodecahedron"]
+objName[4]=["Icosahedron","Icosahedron"]
+objName[5]=["TruncatedTetrahedron","Truncated Tetrahedron"]
+objName[6]=["TruncatedCube","Truncated Cube"]
+objName[7]=["TruncatedOctahedron","Truncated Octahedron"]
+objName[8]=["TruncatedDodecahedron","Truncated Dodecahedron"]
+objName[9]=["TruncatedIcosahedron","Truncated Icosahedron"]
+objName[10]=["Cuboctahedron","Cuboctahedron"]
+objName[11]=["TruncatedCubocahedron","Truncated Cuboctahedron"]
+objName[12]=["Rhombicubocahedron","Rhombicuboctahedron"]
+objName[13]=["SnubCuboctahedron","Snub Cuboctahedron"]
+objName[14]=["Icosidodecahedron","Icosidodecahedron"]
+objName[15]=["TruncatedIcosidodecahedron","Truncated Icosidodecahedron"]
+objName[16]=["Rhombicosidodecahedron","Rhombicosidodecahedron"]
+objName[17]=["SnubIcosidodecahedron","Snub Icosidodecahedron"]
+objName[18]=["TriangularPrism","Triangular Prism"]
+objName[19]=["SquarePrism","Square Prism (Cube)"]
+objName[20]=["PentagonalPrism","Pentagonal Prism"]
+objName[21]=["HexagonalPrism","Hexagonal Prism"]
+objName[22]=["HepatgonalPrism","Heptagonal Prism"]
+objName[23]=["OctagonalPrism","Octagonal Prism"]
+objName[24]=["EnneagonalPrism","Enneagonal Prism"]
+objName[25]=["DecagonalPrism","Decagonal Prism"]
+objName[26]=["TriangularAntiprism","Triangular Antiprism (Octahedron)"]
+objName[27]=["SquareAntiPrism","Square Antiprism"]
+objName[28]=["PentagonalAntiPrism","Pentagonal Antiprism"]
+objName[29]=["HexagonalAntiprism","Hexagonal Antiprism"]
+objName[30]=["HeptagonalAntiprism","Heptagonal Antiprism"]
+objName[31]=["OctagonalAntiprism","Octagonal Antiprism"]
+objName[32]=["EnneagonalAntiprism","Enneagonal Antiprism"]
+objName[33]=["DecagonalAntiprism","Decagonal Antiprism"]
+objName[34]=["J1","Square Pyramid (J1)"]
+objName[35]=["J2","Pentagonal Pyramid (J2)"]
+objName[36]=["J3","Triangular Cupola (J3)"]
+objName[37]=["J4","Square Cupola (J4)"]
+objName[38]=["J5","Pentagonal Cupola (J5)"]
+objName[39]=["J6","Pentagonal Rotunda (J6)"]
+objName[40]=["J7","Elongated Triangular Pyramid (J7)"]
+objName[41]=["J8","Elongated Square Pyramid (J8)"]
+objName[42]=["J9","Elongated Pentagonal Pyramid (J9)"]
+objName[43]=["J10","Gyroelongated Square Pyramid (J10)"]
+objName[44]=["J11","Gyroelongated Pentagonal Pyramid (J11)"]
+objName[45]=["J12","Triangular Dipyramid (J12)"]
+objName[46]=["J13","Pentagonal Dipyramid (J13)"]
+objName[47]=["J14","Elongated Triangular Dipyramid (J14)"]
+objName[48]=["J15","Elongated Square Dipyramid (J15)"]
+objName[49]=["J16","Elongated Pentagonal Dipyramid (J16)"]
+objName[50]=["J17","Gyroelongated Square Dipyramid (J17)"]
+objName[51]=["J18","Elongated Triangular Cupola (J18)"]
+objName[52]=["J19","Elongated Square Cupola (J19)"]
+objName[53]=["J20","Elongated Pentagonal Cupola (J20)"]
+objName[54]=["J21","Elongated Pentagonal Rotunda (J21)"]
+objName[55]=["J22","Gyroelongated Triangular Cupola (J22)"]
+objName[56]=["J23","Gyroelongated Square Cupola (J23)"]
+objName[57]=["J24","Gyroelongated Pentagonal Cupola (J24)"]
+objName[58]=["J25","Gyroelongated Pentagonal Rotunda (J25)"]
+objName[59]=["J26","Gyrobifastigium (J26)"]
+objName[60]=["J27","Triangular Orthobicupola (J27)"]
+objName[61]=["J28","Square Orthobicupola (J28)"]
+objName[62]=["J29","Square Gyrobicupola (J29)"]
+objName[63]=["J30","Pentagonal Orthobicupola (J30)"]
+objName[64]=["J31","Pentagonal Gyrobicupola (J31)"]
+objName[65]=["J32","Pentagonal Orthocupolarotunda (J32)"]
+objName[66]=["J33","Pentagonal Gyrocupolarotunda (J33)"]
+objName[67]=["J34","Pentagonal Orthobirotunda (J34)"]
+objName[68]=["J35","Elongated Triangular Orthobicupola (J35)"]
+objName[69]=["J36","Elongated Triangular Gyrobicupola (J36)"]
+objName[70]=["J37","Elongated Square Gyrobicupola (J37)"]
+objName[71]=["J38","Elongated Pentagonal Orthobicupola (J38)"]
+objName[72]=["J39","Elongated Pentagonal Gyrobicupola (J39)"]
+objName[73]=["J40","Elongated Pentagonal Orthocupolarotunda (J40)"]
+objName[74]=["J41","Elongated Pentagonal Gyrocupolarotunda (J41)"]
+objName[75]=["J42","Elongated Pentagonal Orthobirotunda (J42)"]
+objName[76]=["J43","Elongated Pentagonal Gyrobirotunda (J43)"]
+objName[77]=["J44","Gyroelongated Triangular Bicupola (J44)"]
+objName[78]=["J45","Gyroelongated Square Bicupola (J45)"]
+objName[79]=["J46","Gyroelongated Pentagonal Bicupola (J46)"]
+objName[80]=["J47","Gyroelongated Pentagonal Cupolarotunda (J47)"]
+objName[81]=["J48","Gyroelongated Pentagonal Birotunda (J48)"]
+objName[82]=["J49","Augmented Triangular Prism (J49)"]
+objName[83]=["J50","Biaugmented Triangular Prism (J50)"]
+objName[84]=["J51","Triaugmented Triangular Prism (J51)"]
+objName[85]=["J52","Augmented Pentagonal Prism (J52)"]
+objName[86]=["J53","Biaugmented Pentagonal Prism (J53)"]
+objName[87]=["J54","Augmented Hexagonal Prism (J54)"]
+objName[88]=["J55","Parabiaugmented Hexagonal Prism (J55)"]
+objName[89]=["J56","Metabiaugmented Hexagonal Prism (J56)"]
+objName[90]=["J57","Triaugmented Hexagonal Prism (J57)"]
+objName[91]=["J58","Augmented Dodecahedron (J58)"]
+objName[92]=["J59","Parabiaugmented Dodecahedron (J59)"]
+objName[93]=["J60","Metabiaugmented Dodecahedron (J60)"]
+objName[94]=["J61","Triaugmented Dodecahedron (J61)"]
+objName[95]=["J62","Metabidiminished Icosahedron (J62)"]
+objName[96]=["J63","Tridiminished Icosahedron (J63)"]
+objName[97]=["J64","Augmented Tridiminished Icosahedron (J64)"]
+objName[98]=["J65","Augmented Truncated Tetrahedron (J65)"]
+objName[99]=["J66","Augmented Truncated Cube (J66)"]
+objName[100]=["J67","Biaugmented Truncated Cube (J67)"]
+objName[101]=["J68","Augmented Truncated Dodecahedron (J68)"]
+objName[102]=["J69","Parabiaugmented Truncated Dodecahedron (J69)"]
+objName[103]=["J70","Metabiaugmented Truncated Dodecahedron (J70)"]
+objName[104]=["J71","Triaugmented Truncated Dodecahedron (J71)"]
+objName[105]=["J72","Gyrate Rhombicosidodecahedron (J72)"]
+objName[106]=["J73","Parabigyrate Rhombicosidodecahedron (J73)"]
+objName[107]=["J74","Metabigyrate Rhombicosidodecahedron (J74)"]
+objName[108]=["J75","Trigyrate Rhombicosidodecahedron (J75)"]
+objName[109]=["J76","Diminished Rhombicosidodecahedron (J76)"]
+objName[110]=["J77","Paragyrate Diminished Rhombicosidodecahedron (J77)"]
+objName[111]=["J78","Metagyrate Diminished Rhombicosidodecahedron (J78)"]
+objName[112]=["J79","Bigyrate Diminished Rhombicosidodecahedron (J79)"]
+objName[113]=["J80","Parabidiminished Rhombicosidodecahedron (J80)"]
+objName[114]=["J81","Metabidiminished Rhombicosidodecahedron (J81)"]
+objName[115]=["J82","Gyrate Bidiminished Rhombicosidodecahedron (J82)"]
+objName[116]=["J83","Tridiminished Rhombicosidodecahedron (J83)"]
+objName[117]=["J84","Snub Disphenoid (J84)"]
+objName[118]=["J85","Snub Square Antiprism (J85)"]
+objName[119]=["J86","Sphenocorona (J86)"]
+objName[120]=["J87","Augmented sphenocorona (J87)"]
+objName[121]=["J88","Sphenomegacorona (J88)"]
+objName[122]=["J89","Hebesphenomegacorona (J89)"]
+objName[123]=["J90","Disphenocingulum (J90)"]
+objName[124]=["J91","Bilunabirotunda (J91)"]
+objName[125]=["J92","Triangular Hebesphenorotunda (J92)"]
+
+
+
+
+function writeSolidSelect()
+{
+
+
+   for(var k=0;k<objName.length;k++)
+   {
+     var option=document.createElement("option")
+       option.value=objName[k][0]
+       option.text=objName[k][1]
+       geometricSolidSelect.appendChild(option)
+       if(objName[k][0]=="Icosahedron")
+       option.selected=true
+
+           var option=document.createElement("option")
+          option.value=objName[k][0]
+       option.text=objName[k][1]
+       geometricSolidCompareSelect.appendChild(option)
+       if(objName[k][0]=="Icosahedron")
+       option.selected=true
+
+   }
+}
+
+
+//---POLYHEDRA object in polyhedra.js---
+function geometricSolidSelected()
+{
+     var geometricSolid=geometricSolidSelect.options[geometricSolidSelect.selectedIndex].value
+     solidNameDiv.innerHTML=geometricSolidSelect.options[geometricSolidSelect.selectedIndex].text
+   geometricSolid=geometricSolid.toLowerCase()
+     geometricSolidFrame.src=geometricSolid+"Frame.htm"
+     geometricSolidFrame.style.visibility="hidden"
+     setTimeout(resizeSolid,800)
+
+
+    showSourceSVG()
+}
+
+function resizeSolid()
+{
+ var cw=geometricSolidFrame.contentWindow
+   var svg=cw.document.getElementsByTagName("svg")[0]
+   var svgDiv=cw.document.getElementById("svgDiv")
+   var size=+solidSizeValue.value
+   var scale=size/400
+    svg.firstChild.setAttribute("transform","scale("+scale+")")
+  svg.setAttribute("width",size)
+  svg.setAttribute("height",size)
+
+     geometricSolidFrame.style.visibility="visible"
+
+
+
+}
+
+function geometricSolidCompareSelected()
+{
+    var geometricSolid=geometricSolidCompareSelect.options[geometricSolidCompareSelect.selectedIndex].value
+    solidNameCompareDiv.innerHTML=geometricSolidCompareSelect.options[geometricSolidCompareSelect.selectedIndex].text
+    geometricSolid=  geometricSolid.toLowerCase()
+    geometricSolidCompareFrame.src=geometricSolid+"Frame.htm"
+    geometricSolidCompareFrame.style.visibility="hidden"
+
+    setTimeout(resizeSolidCompare,800)
+}
+function resizeSolidCompare()
+{
+    var cw=geometricSolidCompareFrame.contentWindow
+   var svg=cw.document.getElementsByTagName("svg")[0]
+   var svgDiv=cw.document.getElementById("svgDiv")
+   var size=+solidSizeValue.value
+   var scale=size/400
+    svg.firstChild.setAttribute("transform","scale("+scale+")")
+  svg.setAttribute("width",size)
+  svg.setAttribute("height",size)
+  geometricSolidCompareFrame.style.visibility="visible"
+
+
+
+}
+
+function changeSize()
+{
+   var cw=geometricSolidFrame.contentWindow
+   var svg=cw.document.getElementsByTagName("svg")[0]
+   var svgDiv=cw.document.getElementById("svgDiv")
+   var size=+solidSizeValue.value
+   var scale=size/400
+    svg.firstChild.setAttribute("transform","scale("+scale+")")
+  svg.setAttribute("width",size)
+  svg.setAttribute("height",size)
+
+     var cw=geometricSolidCompareFrame.contentWindow
+   var svg=cw.document.getElementsByTagName("svg")[0]
+   var svgDiv=cw.document.getElementById("svgDiv")
+   var size=+solidSizeValue.value
+   var scale=size/400
+    svg.firstChild.setAttribute("transform","scale("+scale+")")
+  svg.setAttribute("width",size)
+  svg.setAttribute("height",size)
+
+   showSourceSVG()
+}
+
+document.addEventListener("onload",init(),false)
+function init()
+{
+    writeSolidSelect()
+     setTimeout(showSourceSVG,1500)
+     writeEM()
+}
+function writeEM()
+{
+   var em="Contact: "
+    em+="fhem"
+    em+="sher"
+    em+="@"
+    em+="gm"
+    em+="ail."
+    em+="com"
+   emDiv.innerHTML=em +" &nbsp;&nbsp;<span style=color:maroon>Last Update: 8/01/2018</span>"
+
+}
+</script>
+
+
+</body>
+
+</html>

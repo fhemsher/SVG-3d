@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>SEEN.js - j38</title>
+   <script src="svg3d.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/coffee-script/1.7.1/coffee-script.min.js"></script>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style='padding:10px;font-family:arial' onload=sendSVG()>
+
+<div id="svgDiv" style='position:absolute;left:0px;top:0px;width:400px;height:400px;'>
+<svg  id="j38SVG" width=400  xmlns="http://www.w3.org/2000/svg"  height=400></svg>
+</div>
+<script type="text/coffeescript" id=myScript >
+  width  = 400
+  height = 400
+  shape = seen.Shapes.j38().scale(height * 0.4)
+  seen.Colors.randomSurfaces2(shape)
+  scene = new seen.Scene
+    model    : seen.Models.default().add(shape)
+    viewport : seen.Viewports.center(width, height)
+  context = seen.Context('j38SVG', scene).render()
+  context.animate()
+    .onBefore((t, dt) -> shape.rotx(dt*1e-4).roty(0.7*dt*1e-4))
+    .start()
+  dragger = new seen.Drag('j38SVG', {inertia : true})
+  dragger.on('drag.rotate', (e) ->
+    xform = seen.Quaternion.xyToTransform(e.offsetRelative...)
+    shape.transform(xform)
+    context.render())
+</script>
+
+<script>
+function sendSVG()
+{
+   parent.svgSolidValue.value=svgDiv.innerHTML
+}
+</script>
+</body>
+</html>
