@@ -62,7 +62,7 @@ Size:<input type="text" id=solidSizeValue value=400 style=width:60px; /> <button
  <div style=';background:lightblue;padding;10px;border:1px solid black;border-radius:10px'>
 
    Place the following into the &lt;head> of your web page:<br>
-<textarea style='text-align:center;color:white;background:midnightblue;width:400px;height:15px;border-width:0px;'><script src="http:svg-3d.com/svg3d.min.js"></script></textarea>
+<textarea style='text-align:center;color:white;background:midnightblue;width:400px;height:15px;border-width:0px;'><script src="http://svg-3d.com/svg3d.min.js"></script></textarea>
 
  <br>  Place the following into the &lt;body> of your web page:
   <div id=svgSourceDiv style=overflow:auto;width:97%;text-align:center; /></div>
@@ -70,7 +70,10 @@ Size:<input type="text" id=solidSizeValue value=400 style=width:60px; /> <button
 
  <p></p>Geometric Solid 3D SVG Source:
   <textarea id=svgSolidValue style=overflow:auto;width:100%;height:100px;text-align:left; /></textarea>
-<div id=emDiv></div>
+
+<center>Download SVG-3d .zip file <a href="javascript:downloadSite()" >SVG-3d.com Files</a>.
+
+<p></p><div id=emDiv></div>
 </center>
  <script id=myScript>
  //---typical coffee script call---
@@ -388,6 +391,21 @@ function writeEM()
     em+="ail."
     em+="com"
    emDiv.innerHTML=em +" &nbsp;&nbsp;<span style=color:maroon>Last Update: 8/01/2018</span>"
+
+}
+
+function downloadSite()
+{
+
+var zip_file_path = "SiteZip/SVG-3d.zip"
+var zip_file_name = "SVG-3dSite"
+var a = document.createElement("a");
+document.body.appendChild(a);
+a.style = "display: none";
+a.href = zip_file_path;
+a.download = zip_file_name;
+a.click();
+document.body.removeChild(a);
 
 }
 </script>
