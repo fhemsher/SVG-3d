@@ -9,4 +9,6 @@ To run the application, in **localhost** select the index.htm file.
 
 You may then place rotating 3-D SVG geometric solid into your web page.
 
+<iframe src=http://svg-3d-com/gitHubDemo.htm ></iframe>
+
 To preview how this application works go to: http://svg-3d.com
